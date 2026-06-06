@@ -68,13 +68,21 @@ const ProductCard = () => {
                 <p className="text-sm text-gray-500">${product.price} each</p>
 
                 <div className="flex items-center gap-3 mt-3">
-                  <button onClick={() => handleDelta(product.id, -1)} className="p-2 bg-gray-100 rounded">
+                  <button
+                    onClick={() => handleDelta(product.id, -1)}
+                    className="p-2 bg-gray-100 rounded border border-gray-200 hover:bg-gray-200 transition"
+                    aria-label="Decrease quantity"
+                  >
                     <FaMinus />
                   </button>
 
                   <span className="font-semibold">{product.quantity || 1}</span>
 
-                  <button onClick={() => handleDelta(product.id, 1)} className="p-2 bg-gray-100 rounded">
+                  <button
+                    onClick={() => handleDelta(product.id, 1)}
+                    className="p-2 bg-orange-100 rounded-lg border border-gray-200 hover:bg-gray-200 transition"
+                    aria-label="Increase quantity"
+                  >
                     <FaPlus />
                   </button>
 
