@@ -148,7 +148,7 @@ function ProductCard({ product, dispatch }) {
           checkCarditem ? (
             <button
               onClick={removeCardItem}
-              className="w-full bg-black text-white py-2 rounded-xl flex items-center justify-center gap-2 hover:bg-orange-500 transition"
+              className="w-full bg-red-500 text-white py-2 rounded-xl flex items-center justify-center gap-2 hover:bg-red-600 transition"
             >
               <FaShoppingCart />
               Remove from Cart

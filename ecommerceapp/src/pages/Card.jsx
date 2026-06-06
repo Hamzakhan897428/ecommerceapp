@@ -30,6 +30,25 @@ const ProductCard = () => {
   const tax = cards.reduce((s, c) => s + (c.tax || 0), 0);
   const total = subtotal + shipping + tax;
 
+  const handleProceedCheckout = () => {
+    if (cards.length === 0) {
+      toast.warn("Your cart is empty.");
+      return;
+    }
+
+    const checkoutData = {
+      items: cards,
+      subtotal,
+      shipping,
+      tax,
+      total,
+      savedAt: new Date().toISOString(),
+    };
+
+    localStorage.setItem("checkoutCart", JSON.stringify(checkoutData));
+    toast.success("Cart saved to local storage for checkout.");
+  };
+
   return (
     <div className="min-h-screen bg-gray-100 p-6">
       <h1 className="text-2xl font-bold mb-6">Your Cart</h1>
@@ -59,7 +78,7 @@ const ProductCard = () => {
                     <FaPlus />
                   </button>
 
-                  <button onClick={() => handleRemove({ id: product.id })} className="ml-4 text-red-500">
+                  <button onClick={() => handleRemove({ id: product.id })} className="ml-4 text-red-500 hover:text-red-600 transition">
                     <FaTrash />
                   </button>
                 </div>
@@ -99,7 +118,7 @@ const ProductCard = () => {
             </div>
           </div>
 
-          <button className="w-full mt-5 bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">Proceed Checkout</button>
+          <button onClick={handleProceedCheckout} className="w-full mt-5 bg-green-500 text-white py-2 rounded-lg hover:bg-green-600 transition">Proceed Checkout</button>
         </div>
       </div>
     </div>
